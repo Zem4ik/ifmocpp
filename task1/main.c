@@ -18,23 +18,33 @@ int main (int argc, const char* ardv[])
         }
     }
     int x1, x2, y1, y2, max, maxsize = 0;
-    scanf ("%d %d %d %d", &x1, &y1, &x2, &y2);
-    max = a[i - 1][j - 1];
-    while (max)
+    while (1 == 1)
     {
-        max /= 10;
-        maxsize ++;
-    }
-    char length[4];
-    sprintf (length, "%%%dd", maxsize + 1);
-
-    for (i = x1 - 1; i <= x2 - 1; i++)
-    {
-        for (j = y1 - 1; j <= y2 - 1; j++)
+        maxsize = 0;
+        scanf ("%d", &x1);
+        if (x1 == 0)
         {
-            printf (length, a[i][j]);
+            break;
         }
-        printf ("\n");
+        scanf (" %d %d %d", &y1, &x2, &y2);
+        max = a[i - 1][j - 1];
+        while (max)
+        {
+            max /= 10;
+            maxsize ++;
+        }
+        char length[4];
+        sprintf (length, "%%%dd", maxsize + 1);
+
+        for (i = x1 - 1; i <= x2 - 1; i++)
+        {
+            for (j = y1 - 1; j <= y2 - 1; j++)
+            {
+                printf (length, a[i][j]);
+            }
+            printf ("\n");
+        }
     }
     free (a);
+    return 0;
 }

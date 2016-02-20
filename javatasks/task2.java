@@ -7,16 +7,16 @@ public class BinarySearch {
         int right = array.length;
         int mid = 0;
         //pre: l = 0; right = array.length
-        //inv: l < r
-        while (left < right - 1) {
+        //inv: l <= r
+        while (left < right) {
             mid = (right + left) / 2;
-            if (array[mid] < key) {
+            if (array[mid] <= key) {
                 right = mid;
             } else {
-                left = mid;
+                left = mid + 1;
             }
         }
-        //post: l + 1 = r; a[l] <= key; l->max
+        //post: l <= r; a[l] <= key; l->max
         return right;
     }
 

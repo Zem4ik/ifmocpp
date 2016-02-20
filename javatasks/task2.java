@@ -17,7 +17,10 @@ public class BinarySearch {
             }
         }
         //post: l + 1 = r; a[l] <= key; l->max
-        return right;
+        if (array[left] == key)
+            return left;
+        else
+            return right;
     }
 
     public static void main(String[] args) {

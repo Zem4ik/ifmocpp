@@ -10,17 +10,14 @@ public class BinarySearch {
         //inv: l < r
         while (left < right - 1) {
             mid = (right + left) / 2;
-            if (array[mid] <= key) {
+            if (array[mid] < key) {
                 right = mid;
             } else {
                 left = mid;
             }
         }
         //post: l + 1 = r; a[l] <= key; l->max
-        if (array[left] == key)
-            return left;
-        else
-            return right;
+        return right;
     }
 
     public static void main(String[] args) {

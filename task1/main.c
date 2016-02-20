@@ -45,6 +45,10 @@ int main (int argc, const char* ardv[])
             printf ("\n");
         }
     }
+    for (i = 0; i < n; i++)
+    {
+        free(a[i]);
+    }
     free (a);
     return 0;
 }

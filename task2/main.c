@@ -199,7 +199,7 @@ char *upgrateNumber(char *number) {
             free(number);
             return newnumber;
         }
-        if (isdigit(symbol)) {
+        if (!isalpha(symbol)) {
             if (size < j) {
                 newnumber = realloc(newnumber, sizeof(char) * (size += 10));
             }

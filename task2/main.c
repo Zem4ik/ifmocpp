@@ -54,7 +54,7 @@ char *getStringFromFile() {
     int i = 0;
     char symbol;
 
-    /*/while (!feof(workFile)) {
+    while (!feof(workFile)) {
         symbol = fgetc(workFile);
         if (symbol != '\n' && symbol != ' ' && symbol != EOF) {
             string[i] = symbol;
@@ -62,7 +62,6 @@ char *getStringFromFile() {
             break;
         }
     }
-     /*/
 
     while (!feof(workFile)) {
         symbol = fgetc(workFile);
@@ -93,9 +92,11 @@ void fillArray(void) {
         buf->name = getStringFromFile();
         buf->number = getStringFromFile();
         buf->next = NULL;
-        addInList(buf);
-        sizeOfHuman++;
-        i++;
+        if (buf->name[0] != '\0') {
+            addInList(buf);
+            sizeOfHuman++;
+            i++;
+        }
     }
 }
 
@@ -237,7 +238,7 @@ int main(int argc, char *argv[]) {
     }
     free(temp);
     /*/
-    
+
     char *command;
     char *string;
     char *string2;

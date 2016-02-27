@@ -288,5 +288,6 @@ int main(int argc, char *argv[]) {
             fclose(workFile);
             break;
         }
+        fflush(stdout);
     }
 }

@@ -226,7 +226,6 @@ int main(int argc, char *argv[]) {
     char *fileName = argv[1];
     workFile = fopen(fileName, "r+");
     if (workFile == NULL) {
-        fclose(workFile);
         workFile = fopen(fileName, "w+");
     }
     fillArray();

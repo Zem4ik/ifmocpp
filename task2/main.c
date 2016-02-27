@@ -231,13 +231,14 @@ int main(int argc, char *argv[]) {
     }
     fillArray();
 
-    struct human *temp = head;
+    /*/struct human *temp = head;
     while (temp != NULL) {
         printf("%d %s %s\n", temp->id, temp->name, temp->number);
         temp = temp->next;
     }
     free(temp);
-
+    /*/
+    
     char *command;
     char *string;
     char *string2;

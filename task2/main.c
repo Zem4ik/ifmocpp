@@ -282,9 +282,9 @@ int main(int argc, char *argv[]) {
         fclose(workFile);
         workFile = fopen(fileName, "w+");
         refreshFile();
-        fclose(workFile);
 
         if (strcmp(command, "exit") == 0) {
+            fclose(workFile);
             break;
         }
     }

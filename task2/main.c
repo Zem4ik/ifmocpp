@@ -40,7 +40,7 @@ char *getString() {
             string[i] = '\0';
             return string;
         }
-        if (sizeOfString < i) {
+        if (sizeOfString <= i + 1) {
             string = realloc(string, sizeof(char) * (sizeOfString += 10));
         }
         string[i] = symbol;
@@ -56,6 +56,7 @@ char *getStringFromFile() {
 
     while (!feof(workFile)) {
         symbol = fgetc(workFile);
+        putchar(symbol);
         if (symbol != '\n' && symbol != ' ' && symbol != EOF) {
             string[i] = symbol;
             i++;
@@ -65,11 +66,12 @@ char *getStringFromFile() {
 
     while (!feof(workFile)) {
         symbol = fgetc(workFile);
+        putchar(symbol);
         if (symbol == '\n' || symbol == ' ' || symbol == EOF) {
             string[i] = '\0';
             return string;
         }
-        if (sizeOfString < i) {
+        if (sizeOfString <= i + 1) {
             string = realloc(string, sizeof(char) * (sizeOfString += 10));
         }
         string[i] = symbol;
@@ -267,7 +269,6 @@ int main(int argc, char *argv[]) {
     int number;
     while (true) {
         command = getString();
-
         if (strcmp(command, "find") == 0) {
             string = getString();
             if (isalpha(string[0])) {
@@ -313,4 +314,3 @@ int main(int argc, char *argv[]) {
         fflush(stdout);
     }
 }
-

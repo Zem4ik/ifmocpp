@@ -222,7 +222,7 @@ void refreshFile(void) {
     free(temp);
 }
 
-int main(int argc, const char *argv[]) {
+int main(int argc, char *argv[]) {
     char *fileName = argv[1];
     workFile = fopen(fileName, "r+");
     if (workFile == NULL) {

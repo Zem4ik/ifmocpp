@@ -112,6 +112,25 @@ char *toApperCase (char *string, int length){
     return newstring;
 }
 
+char *cleanNumber(char *number, int len) {
+    char *newnumber = (char *) malloc(sizeof(char) * len);
+    int size = 10;
+    char symbol;
+    int i = 0, j = 0;
+    while (true) {
+        symbol = number[i];
+        if (symbol == '\0') {
+            newnumber[j] = '\0';
+            return newnumber;
+        }
+        if (isdigit(symbol)) {
+            newnumber[j] = symbol;
+            j++;
+        }
+        i++;
+    }
+}
+
 void findByName(char *name) {
     char *buf;
     char *temp1 = toApperCase(name, strlen(name));
@@ -129,8 +148,11 @@ void findByName(char *name) {
 
 void findByNumber(char *number) {
     struct human *temp = head;
+    char *temp1 = toApperCase(number, strlen(number));
+    char *temp2;
     while (temp != NULL) {
-        if (strcmp(number, temp->number) == 0) {
+        temp2 = cleanNumber(temp->number, strlen(temp->number));
+        if (strcmp(temp1, temp2) == 0) {
             printf("%d %s %s\n", temp->id, temp->name, temp->number);
         }
         temp = temp->next;
@@ -291,3 +313,4 @@ int main(int argc, char *argv[]) {
         fflush(stdout);
     }
 }
+

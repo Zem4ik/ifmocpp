@@ -1,3 +1,6 @@
+#ifndef TASK3_RATIONAL_H
+#define TASK3_RATIONAL_H
+
 class rational {
     private:
         int num;
@@ -25,3 +28,4 @@ class rational {
 
         rational operator /(rational const &secondRational) const;
 };
+#endif //TASK3_RATIONAL_H

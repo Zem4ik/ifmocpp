@@ -1,5 +1,4 @@
-#ifndef TASK3_RATIONAL_H
-#define TASK3_RATIONAL_H
+#pragma once
 
 class rational {
     private:
@@ -28,4 +27,3 @@ class rational {
 
         rational operator /(rational const &secondRational) const;
 };
-#endif //TASK3_RATIONAL_H

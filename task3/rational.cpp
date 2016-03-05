@@ -1,7 +1,7 @@
 #include "rational.h"
 
 
-int rational::gcd(int a, int b) const{
+int rational::gcd(int a, int b) const {
     int c;
     while (a != 0) {
         c = a;
@@ -30,7 +30,7 @@ int rational::getDenom() const {
     return denom;
 }
 
-rational rational::operator+(rational const & secondRational) const {
+rational rational::operator+(rational const &secondRational) const {
     int newNum;
     int newDenom;
     newDenom = denom * secondRational.getDenom() / gcd(denom, secondRational.getDenom());
@@ -39,7 +39,7 @@ rational rational::operator+(rational const & secondRational) const {
     return answer;
 }
 
-rational rational::operator-(rational const & secondRational) const {
+rational rational::operator-(rational const &secondRational) const {
     int newNum;
     int newDenom;
     newDenom = denom * secondRational.getDenom() / gcd(denom, secondRational.getDenom());
@@ -65,3 +65,4 @@ rational rational::operator/(const rational &secondRational) const {
     rational answer(newNum, newDenom);
     return answer;
 }
+

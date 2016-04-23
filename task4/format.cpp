@@ -10,6 +10,10 @@
 using namespace std;
 
 namespace Format {
+    int index = 0;
+    bool varWidth = 0;
+    bool varPrecision = 0;
+
     void getFlag(formatType *prototype, string const &format) {
         while (true) {
             switch (format[index]) {

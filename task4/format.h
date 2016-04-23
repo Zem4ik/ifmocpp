@@ -13,9 +13,9 @@
 using namespace std;
 
 namespace Format {
-    int index = 0;
-    bool varWidth = 0;
-    bool varPrecision = 0;
+    extern int index;
+    extern bool varWidth;
+    extern bool varPrecision;
 
     enum formatLength {
         lengthNull,

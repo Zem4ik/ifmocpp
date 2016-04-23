@@ -262,7 +262,7 @@ namespace Format {
         }
 
         if (prototype.space) {
-            if (stringNumber[0] != '+' && stringNumber[0] != '-') {
+            if (stringNumber[0] != '+' && stringNumber[0] != '-' && answer[0] != ' ') {
                 answer = " " + answer;
             }
         }

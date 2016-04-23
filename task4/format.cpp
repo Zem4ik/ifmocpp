@@ -200,7 +200,7 @@ namespace Format {
     string levelingOfString(formatType prototype, string stringNumber) {
         string answer;
         bool temp = prototype.spec == d || prototype.spec == i || prototype.spec == f || prototype.spec == F || prototype.spec == E || prototype.spec == e
-                    || prototype.spec == g || prototype.spec == G;
+                    || prototype.spec == g || prototype.spec == G || prototype.spec == a || prototype.spec == A;
         if (prototype.positive && prototype.spec != s && temp) {
             if (stringNumber[0] != '-') {
                 stringNumber = "+" + stringNumber;

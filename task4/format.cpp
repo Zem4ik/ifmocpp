@@ -199,7 +199,8 @@ namespace Format {
 
     string levelingOfString(formatType prototype, string stringNumber) {
         string answer;
-        if (prototype.positive && prototype.spec != s) {
+        bool temp = prototype.spec == d || prototype.spec == i || prototype.spec == f || prototype.spec == F;
+        if (prototype.positive && prototype.spec != s && temp) {
             if (stringNumber[0] != '-') {
                 stringNumber = "+" + stringNumber;
             }
@@ -234,7 +235,7 @@ namespace Format {
                 }
             }
             if (prototype.zero && prototype.spec != s) {
-                bool temp = prototype.spec == d || prototype.spec == i || prototype.spec == o ||
+                temp = prototype.spec == d || prototype.spec == i || prototype.spec == o ||
                             prototype.spec == u || prototype.spec == x || prototype.spec == X;
                 if (!temp || prototype.precision == -1) {
                     if (0 < prototype.width - answer.length()) {

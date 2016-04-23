@@ -11,6 +11,9 @@ int main() {
     int* arrint = new int [3];
     arrint[0] = 1;
     arrint[1] = 1;
+    cout << format("%#+X \n", 1977);
+    printf("%#+X \n", 1977);
+    /*
     arrint[2] = 1;
     cout << format("Characters: %c %c \n", 'a', 65);
     cout << format("Decimals: %d %ld\n", 1977, 650000L);
@@ -22,6 +25,7 @@ int main() {
     cout << format("%s \n", "A string");
     cout << format("%p\n", arrint);
 
+
     printf("%p\n", arrint);
     printf("Characters: %c %c \n", 'a', 65);
     printf("Decimals: %d %ld\n", 1977, 650000L);
@@ -31,5 +35,6 @@ int main() {
     printf("floats: %4.2f %+.0e %E \n", 3.1416, 3.1416, 3.1416);
     printf("Width trick: %*d \n", 5, 10);
     printf("%s \n", "A string");
+    */
 }
 

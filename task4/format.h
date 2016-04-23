@@ -151,11 +151,6 @@ namespace Format {
         if (prototype.spec == X) {
             snprintf(charNumber, 20, ("%" + precision + "X").c_str(), newNumber);
             stringNumber = charNumber;
-            for (int j = 0; i < stringNumber.length(); j++) {
-                if (!isdigit(stringNumber[j])) {
-                    stringNumber[j] = toupper(stringNumber[j]);
-                }
-            }
             return stringNumber;
         }
         return oldString;

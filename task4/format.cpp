@@ -64,6 +64,7 @@ namespace Format {
         }
         indexofFormatString++;
         if (format[indexofFormatString] == '*') {
+            indexofFormatString++;
             varPrecision = 1;
             return -1;
         }

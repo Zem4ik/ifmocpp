@@ -11,3 +11,5 @@ target_link_libraries(CProjects format)
 
 set(HEADERS Test.cpp)
 set(SOURCES format.cpp)
+install(TARGETS format DESTINATION lib)
+install(FILES format.h DESTINATION include)

@@ -6,6 +6,7 @@
 #include <sstream>
 #include <stdexcept>
 #include <string>
+#include <type_traits>
 //
 // Created by Влад on 23.04.2016.
 //
@@ -302,7 +303,17 @@ namespace Format {
     }
 
     template<typename T>
-    typename std::enable_if<!(std::is_convertible<T, string>::value), string>::type
+    typename std::enable_if<(!(std::is_convertible<T, string>::value) && (std::is_pointer<T>::value)), string>::type
+    writeVar(formatType prototype, T variable) {
+        string stringNumber;
+        char *charNumber = new char[1024];
+        snprintf(charNumber, 1024, "%p", variable);
+        stringNumber = charNumber;
+        return stringNumber;
+    }
+
+    template<typename T>
+    typename std::enable_if<!(std::is_convertible<T, string>::value) && !(std::is_pointer<T>::value), string>::type
     writeVar(formatType prototype, T variable) {
         string stringNumber;
         if (prototype.spec == d || prototype.spec == i) {
@@ -321,13 +332,6 @@ namespace Format {
         if (prototype.spec == c) {
             stringNumber += variable;
             return levelingOfString(prototype, stringNumber);
-        }
-        if (prototype.spec == s) {
-            stringNumber = variable;
-            return levelingOfString(prototype, stringNumber);
-        }
-        if (prototype.spec == p) {
-
         }
     }
 

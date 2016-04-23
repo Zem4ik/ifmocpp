@@ -10,36 +10,36 @@
 using namespace std;
 
 namespace Format {
-    int index = 0;
+    int indexofFormatString = 0;
     bool varWidth = 0;
     bool varPrecision = 0;
 
     void getFlag(formatType *prototype, string const &format) {
         while (true) {
-            switch (format[index]) {
+            switch (format[indexofFormatString]) {
                 case '-': {
                     prototype->negative = 1;
-                    index++;
+                    indexofFormatString++;
                     break;
                 }
                 case '+': {
                     prototype->positive = 1;
-                    index++;
+                    indexofFormatString++;
                     break;
                 }
                 case ' ': {
                     prototype->space = 1;
-                    index++;
+                    indexofFormatString++;
                     break;
                 }
                 case '#': {
                     prototype->sharp = 1;
-                    index++;
+                    indexofFormatString++;
                     break;
                 }
                 case '0': {
                     prototype->zero = 1;
-                    index++;
+                    indexofFormatString++;
                     break;
                 }
                 default: {
@@ -51,19 +51,19 @@ namespace Format {
 
     int getNumber(string const &format) {
         int answer = 0; //Октай докапался до этого места!!!!!!!!!!!!!!!!!!!!!!!
-        while (isdigit(format[index])) {
-            answer = answer * 10 + (format[index] - '0');
-            index++;
+        while (isdigit(format[indexofFormatString])) {
+            answer = answer * 10 + (format[indexofFormatString] - '0');
+            indexofFormatString++;
         }
         return answer;
     }
 
     int getPrecision(string const &format) {
-        if (format[index] != '.') {
+        if (format[indexofFormatString] != '.') {
             return -1;
         }
-        index++;
-        if (format[index] == '*') {
+        indexofFormatString++;
+        if (format[indexofFormatString] == '*') {
             varPrecision = 1;
             return -1;
         }
@@ -71,123 +71,123 @@ namespace Format {
     }
 
     formatLength getLength(string const &format) {
-        if (format[index] == 'h' && format[index + 1] == 'h') {
-            index += 2;
+        if (format[indexofFormatString] == 'h' && format[indexofFormatString + 1] == 'h') {
+            indexofFormatString += 2;
             return hh;
         }
-        if (format[index] == 'l' && format[index + 1] == 'l') {
-            index += 2;
+        if (format[indexofFormatString] == 'l' && format[indexofFormatString + 1] == 'l') {
+            indexofFormatString += 2;
             return ll;
         }
-        if (format[index] == 'l') {
-            index++;
+        if (format[indexofFormatString] == 'l') {
+            indexofFormatString++;
             return l;
         }
-        if (format[index] == 'h') {
-            index++;
+        if (format[indexofFormatString] == 'h') {
+            indexofFormatString++;
             return h;
         }
-        if (format[index] == 'j') {
-            index++;
+        if (format[indexofFormatString] == 'j') {
+            indexofFormatString++;
             return j;
         }
-        if (format[index] == 'z') {
-            index++;
+        if (format[indexofFormatString] == 'z') {
+            indexofFormatString++;
             return z;
         }
-        if (format[index] == 't') {
-            index++;
+        if (format[indexofFormatString] == 't') {
+            indexofFormatString++;
             return t;
         }
-        if (format[index] == 'L') {
-            index++;
+        if (format[indexofFormatString] == 'L') {
+            indexofFormatString++;
             return L;
         }
         return lengthNull;
     }
 
     formatSpecifier getSpecifier(string const &format) {
-        if (format[index] == 'd') {
-            index++;
+        if (format[indexofFormatString] == 'd') {
+            indexofFormatString++;
             return d;
         }
-        if (format[index] == 'i') {
-            index++;
+        if (format[indexofFormatString] == 'i') {
+            indexofFormatString++;
             return i;
         }
-        if (format[index] == 'u') {
-            index++;
+        if (format[indexofFormatString] == 'u') {
+            indexofFormatString++;
             return u;
         }
-        if (format[index] == 'o') {
-            index++;
+        if (format[indexofFormatString] == 'o') {
+            indexofFormatString++;
             return o;
         }
-        if (format[index] == 'x') {
-            index++;
+        if (format[indexofFormatString] == 'x') {
+            indexofFormatString++;
             return x;
         }
-        if (format[index] == 'X') {
-            index++;
+        if (format[indexofFormatString] == 'X') {
+            indexofFormatString++;
             return X;
         }
-        if (format[index] == 'f') {
-            index++;
+        if (format[indexofFormatString] == 'f') {
+            indexofFormatString++;
             return f;
         }
-        if (format[index] == 'F') {
-            index++;
+        if (format[indexofFormatString] == 'F') {
+            indexofFormatString++;
             return F;
         }
-        if (format[index] == 'e') {
-            index++;
+        if (format[indexofFormatString] == 'e') {
+            indexofFormatString++;
             return e;
         }
-        if (format[index] == 'E') {
-            index++;
+        if (format[indexofFormatString] == 'E') {
+            indexofFormatString++;
             return E;
         }
-        if (format[index] == 'g') {
-            index++;
+        if (format[indexofFormatString] == 'g') {
+            indexofFormatString++;
             return g;
         }
-        if (format[index] == 'G') {
-            index++;
+        if (format[indexofFormatString] == 'G') {
+            indexofFormatString++;
             return G;
         }
-        if (format[index] == 'a') {
-            index++;
+        if (format[indexofFormatString] == 'a') {
+            indexofFormatString++;
             return a;
         }
-        if (format[index] == 'A') {
-            index++;
+        if (format[indexofFormatString] == 'A') {
+            indexofFormatString++;
             return A;
         }
-        if (format[index] == 'c') {
-            index++;
+        if (format[indexofFormatString] == 'c') {
+            indexofFormatString++;
             return c;
         }
-        if (format[index] == 's') {
-            index++;
+        if (format[indexofFormatString] == 's') {
+            indexofFormatString++;
             return s;
         }
-        if (format[index] == 'p') {
-            index++;
+        if (format[indexofFormatString] == 'p') {
+            indexofFormatString++;
             return p;
         }
-        if (format[index] == 'n') {
-            index++;
+        if (format[indexofFormatString] == 'n') {
+            indexofFormatString++;
             return n;
         }
     }
 
     formatType readFormat(string const &format) {
         formatType answer;
-        index++;
+        indexofFormatString++;
         getFlag(&answer, format);
-        if (format[index] == '*') {
+        if (format[indexofFormatString] == '*') {
             varWidth = 1;
-            index++;
+            indexofFormatString++;
         } else {
             answer.width = getNumber(format);
         }
@@ -275,18 +275,18 @@ namespace Format {
     string toString(string const &format) {
         string answer;
         while (true) { //вывод все что перед процентом
-            if (format[index] == '%' && format[index + 1] == '%') {
+            if (format[indexofFormatString] == '%' && format[indexofFormatString + 1] == '%') {
                 answer += "%";
-                index += 2;
+                indexofFormatString += 2;
             }
-            if (format[index] == '%' && format[index + 1] != '%') {
+            if (format[indexofFormatString] == '%' && format[indexofFormatString + 1] != '%') {
                 throw std::invalid_argument("too many arguments");
             }
-            if (format[index] == '\0') {
+            if (format[indexofFormatString] == '\0') {
                 return answer;
             }
-            answer += format[index];
-            index++;
+            answer += format[indexofFormatString];
+            indexofFormatString++;
         }
     }
 

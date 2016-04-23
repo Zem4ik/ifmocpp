@@ -14,7 +14,7 @@
 using namespace std;
 
 namespace Format {
-    extern int index;
+    extern int indexofFormatString;
     extern bool varWidth;
     extern bool varPrecision;
 
@@ -341,19 +341,19 @@ namespace Format {
     string toString(string const &format, T first, Args ... args) {
         string answer;
         while (true) { //вывод все что перед процентом
-            if (format[index] == '%' && format[index + 1] == '%') {
+            if (format[indexofFormatString] == '%' && format[indexofFormatString + 1] == '%') {
                 answer += "%";
-                index += 2;
+                indexofFormatString += 2;
             }
-            if (format[index] == '%' && format[index + 1] != '%') {
+            if (format[indexofFormatString] == '%' && format[indexofFormatString + 1] != '%') {
                 break;
             }
-            if (format[index] == '\0') {
-                answer += format[index];
+            if (format[indexofFormatString] == '\0') {
+                answer += format[indexofFormatString];
                 return answer;
             }
-            answer += format[index];
-            index++;
+            answer += format[indexofFormatString];
+            indexofFormatString++;
         }
         varPrecision = 0;
         varWidth = 0;
@@ -413,7 +413,7 @@ using namespace Format;
 template<typename ... Args>
 string format(string const &format, Args ... args) {
     string answer = toString(format, args...);
-    index = 0;
+    indexofFormatString = 0;
     return answer;
 }
 

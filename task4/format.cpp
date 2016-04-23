@@ -211,7 +211,8 @@ namespace Format {
             length--;
         }
 
-        if (prototype.precision > length) {
+        temp = prototype.spec == g || prototype.spec == G;
+        if (prototype.precision > length  && !temp) {
             if (stringNumber[0] == '+' || stringNumber[0] == '-') {
                 answer += stringNumber[0];
             }

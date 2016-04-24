@@ -339,6 +339,7 @@ namespace Format {
             stringNumber += variable;
             return levelingOfString(prototype, stringNumber);
         }
+        std::invalid_argument("Invalid argument");
     }
 
     string toString(string const &format);
@@ -388,7 +389,7 @@ namespace Format {
     template<typename T, typename... Args>
     typename std::enable_if<!(std::is_convertible<T, int>::value), string>::type
     getPW(formatType prototype, string const &format, T first, Args ... args) {
-        throw std::invalid_argument("too many arguments");
+        throw std::invalid_argument("Invalid argument: not int found instead of *");
     };
 
     template<typename T, typename... Args>

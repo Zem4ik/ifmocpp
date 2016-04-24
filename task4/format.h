@@ -300,8 +300,12 @@ namespace Format {
             stringNumber = charNumber;
             return stringNumber;
         }
-        string stringNumber = variable;
-        return levelingOfString(prototype, stringNumber);
+        if (prototype.spec == s) {
+            string stringNumber = variable;
+            return levelingOfString(prototype, stringNumber);
+        } else {
+            std::invalid_argument("Invalid argument: string found");
+        }
     }
 
     template<typename T>

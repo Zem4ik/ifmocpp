@@ -237,7 +237,8 @@ namespace Format {
                     answer = answer + " ";
                 }
             }
-            if (prototype.zero && prototype.spec != s) {
+            temp = prototype.spec == s || prototype.spec == c;
+            if (prototype.zero && !temp) {
                 temp = prototype.spec == d || prototype.spec == i || prototype.spec == o ||
                             prototype.spec == u || prototype.spec == x || prototype.spec == X;
                 if (!temp || prototype.precision == -1) {

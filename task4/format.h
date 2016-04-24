@@ -291,14 +291,21 @@ namespace Format {
     string writeVar(formatType prototype, string variable);
 
     template<typename T>
-    typename std::enable_if<(std::is_convertible<T, string>::value) && !(std::is_pointer<T>::value), string>::type
+    typename std::enable_if<(std::is_convertible<T, string>::value), string>::type
     writeVar(formatType prototype, T variable) {
+        if (prototype.spec == p) {
+            string stringNumber;
+            char *charNumber = new char[1024];
+            snprintf(charNumber, 1024, "%p", variable);
+            stringNumber = charNumber;
+            return stringNumber;
+        }
         string stringNumber = variable;
         return levelingOfString(prototype, stringNumber);
     }
 
     template<typename T>
-    typename std::enable_if<(std::is_pointer<T>::value), string>::type
+    typename std::enable_if<(!(std::is_convertible<T, string>::value) && (std::is_pointer<T>::value)), string>::type
     writeVar(formatType prototype, T variable) {
         string stringNumber;
         char *charNumber = new char[1024];

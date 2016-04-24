@@ -213,7 +213,7 @@ namespace Format {
             length--;
         }
 
-        temp = prototype.spec == g || prototype.spec == G;
+        temp = prototype.spec == g || prototype.spec == G || prototype.spec == c || prototype.spec == s;
         if (prototype.precision > length  && !temp) {
             if (stringNumber[0] == '+' || stringNumber[0] == '-') {
                 answer += stringNumber[0];

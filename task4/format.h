@@ -291,14 +291,14 @@ namespace Format {
     string writeVar(formatType prototype, string variable);
 
     template<typename T>
-    typename std::enable_if<(std::is_convertible<T, string>::value), string>::type
+    typename std::enable_if<(std::is_convertible<T, string>::value) && !(std::is_pointer<T>::value), string>::type
     writeVar(formatType prototype, T variable) {
         string stringNumber = variable;
         return levelingOfString(prototype, stringNumber);
     }
 
     template<typename T>
-    typename std::enable_if<(!(std::is_convertible<T, string>::value) && (std::is_pointer<T>::value)), string>::type
+    typename std::enable_if<(std::is_pointer<T>::value), string>::type
     writeVar(formatType prototype, T variable) {
         string stringNumber;
         char *charNumber = new char[1024];
@@ -335,7 +335,7 @@ namespace Format {
     template<typename T, typename... Args>
     string toString(string const &format, T first, Args ... args) {
         string answer;
-        while (true) { //вывод все что перед процентом
+        while (true) {
             if (format[indexofFormatString] == '%' && format[indexofFormatString + 1] == '%') {
                 answer += "%";
                 indexofFormatString += 2;

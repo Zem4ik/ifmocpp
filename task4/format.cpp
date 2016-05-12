@@ -180,6 +180,7 @@ namespace Format {
             indexofFormatString++;
             return n;
         }
+        return none;
     }
 
     formatType readFormat(string const &format) {
@@ -284,8 +285,11 @@ namespace Format {
                 answer += "%";
                 indexofFormatString += 2;
             }
-            if (format[indexofFormatString] == '%' && format[indexofFormatString + 1] != '%') {
+            if (format[indexofFormatString] == '%' && getSpecifier(format) != none) {
                 throw std::out_of_range("not enough arguments");
+            }
+            if (format[indexofFormatString] == '%' && getSpecifier(format) == none) {
+                throw std::invalid_argument("wrong format");
             }
             if (format[indexofFormatString] == '\0') {
                 return answer;

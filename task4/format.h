@@ -50,6 +50,7 @@ namespace Format {
         s,
         p,
         n,
+        none,
     };
 
     struct formatType {

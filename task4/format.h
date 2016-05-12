@@ -427,6 +427,8 @@ using namespace Format;
 
 template<typename ... Args>
 string format(string const &format, Args ... args) {
+    varWidth = 0;
+    varPrecision = 0;
     indexofFormatString = 0;
     string answer = toString(format, args...);
     return answer;

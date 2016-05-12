@@ -343,7 +343,7 @@ namespace Format {
             return levelingOfString(prototype, stringNumber);
         }
         std::stringstream buffer;
-        buffer << typeid(variable).name();
+        buffer << typeid(variable).name() << " - " << prototype.spec << " - " << variable;
         throw std::invalid_argument("Invalid argument " + buffer.str());
     }
 

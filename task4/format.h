@@ -7,6 +7,7 @@
 #include <stdexcept>
 #include <string>
 #include <type_traits>
+#include <typeinfo>
 //
 // Created by Влад on 23.04.2016.
 //
@@ -342,7 +343,7 @@ namespace Format {
             return levelingOfString(prototype, stringNumber);
         }
         std::stringstream buffer;
-        buffer << prototype.spec;
+        buffer << typeid(variable).name();
         throw std::invalid_argument("Invalid argument " + buffer.str());
     }
 

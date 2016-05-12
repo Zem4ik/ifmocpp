@@ -183,6 +183,64 @@ namespace Format {
         return none;
     }
 
+    formatSpecifier getSpecifier2(string const &format) {
+        if (format[indexofFormatString + 1] == 'd') {
+            return d;
+        }
+        if (format[indexofFormatString + 1] == 'i') {
+            return i;
+        }
+        if (format[indexofFormatString + 1] == 'u') {
+            return u;
+        }
+        if (format[indexofFormatString + 1] == 'o') {
+            return o;
+        }
+        if (format[indexofFormatString + 1] == 'x') {
+            return x;
+        }
+        if (format[indexofFormatString + 1] == 'X') {
+            return X;
+        }
+        if (format[indexofFormatString + 1] == 'f') {
+            return f;
+        }
+        if (format[indexofFormatString + 1] == 'F') {
+            return F;
+        }
+        if (format[indexofFormatString + 1] == 'e') {
+            return e;
+        }
+        if (format[indexofFormatString + 1] == 'E') {
+            return E;
+        }
+        if (format[indexofFormatString + 1] == 'g') {
+            return g;
+        }
+        if (format[indexofFormatString + 1] == 'G') {
+            return G;
+        }
+        if (format[indexofFormatString + 1] == 'a') {
+            return a;
+        }
+        if (format[indexofFormatString + 1] == 'A') {
+            return A;
+        }
+        if (format[indexofFormatString + 1] == 'c') {
+            return c;
+        }
+        if (format[indexofFormatString + 1] == 's') {
+            return s;
+        }
+        if (format[indexofFormatString + 1] == 'p') {
+            return p;
+        }
+        if (format[indexofFormatString + 1] == 'n') {
+            return n;
+        }
+        return none;
+    }
+
     formatType readFormat(string const &format) {
         formatType answer;
         indexofFormatString++;
@@ -285,10 +343,10 @@ namespace Format {
                 answer += "%";
                 indexofFormatString += 2;
             }
-            if (format[indexofFormatString++] == '%' && getSpecifier(format) != none) {
+            if (format[indexofFormatString] == '%' && getSpecifier2(format) != none) {
                 throw std::out_of_range("not enough arguments");
             }
-            if (format[indexofFormatString] == '%' && getSpecifier(format) == none) {
+            if (format[indexofFormatString] == '%' && getSpecifier2(format) == none) {
                 throw std::invalid_argument("wrong format");
             }
             if (format[indexofFormatString] == '\0') {

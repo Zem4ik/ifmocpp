@@ -364,7 +364,7 @@ namespace Format {
             }
             if (format[indexofFormatString] == '\0') {
                 if (format.size() == 0 || indexofFormatString == format.size()) {
-                    throw std::invalid_argument("too much arguments");
+                    //throw std::invalid_argument("too much arguments");
                 }
                 answer += format[indexofFormatString];
                 return answer;

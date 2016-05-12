@@ -341,7 +341,9 @@ namespace Format {
             stringNumber += variable;
             return levelingOfString(prototype, stringNumber);
         }
-        throw std::invalid_argument("Invalid argument" + prototype.spec);
+        std::stringstream buffer;
+        buffer << prototype.spec;
+        throw std::invalid_argument("Invalid argument " + buffer.str());
     }
 
     string toString(string const &format);

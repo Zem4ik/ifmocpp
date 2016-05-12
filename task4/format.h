@@ -305,7 +305,7 @@ namespace Format {
             string stringNumber = variable;
             return levelingOfString(prototype, stringNumber);
         } else {
-            throw std::invalid_argument("Invalid argument: string found");
+            throw std::invalid_argument("Invalid argument: string expected");
         }
     }
 
@@ -343,9 +343,7 @@ namespace Format {
             stringNumber += variable;
             return levelingOfString(prototype, stringNumber);
         }
-        std::stringstream buffer;
-        buffer << typeid(variable).name() << " - " << prototype.spec << " - " << variable;
-        throw std::invalid_argument("Invalid argument " + buffer.str());
+        throw std::invalid_argument("Invalid argument");
     }
 
     string toString(string const &format);

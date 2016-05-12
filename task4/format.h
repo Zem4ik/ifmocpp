@@ -304,7 +304,8 @@ namespace Format {
             string stringNumber = variable;
             return levelingOfString(prototype, stringNumber);
         } else {
-            throw std::invalid_argument("Invalid argument: string found");
+            return "NONE";
+            //throw std::invalid_argument("Invalid argument: string found");
         }
     }
 
@@ -430,7 +431,7 @@ template<typename ... Args>
 string format(string const &format, Args ... args) {
     string answer = toString(format, args...);
     indexofFormatString = 0;
-    return answer;
+    return answer + " " +  format;
 }
 
 

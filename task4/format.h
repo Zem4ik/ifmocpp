@@ -426,6 +426,7 @@ template<typename ... Args>
 string format(string const &format, Args ... args) {
     string answer = toString(format, args...);
     indexofFormatString = 0;
+    return format;
     return answer;
 }
 

@@ -423,7 +423,6 @@ using namespace Format;
 template<typename ... Args>
 string format(string const &format, Args ... args) {
     string answer = toString(format, args...);
-    printf("%s", answer);
     indexofFormatString = 0;
     return answer;
 }

@@ -285,7 +285,7 @@ namespace Format {
                 indexofFormatString += 2;
             }
             if (format[indexofFormatString] == '%' && format[indexofFormatString + 1] != '%') {
-                throw std::invalid_argument("too many arguments");
+                throw std::out_of_range("not enough arguments");
             }
             if (format[indexofFormatString] == '\0') {
                 return answer;
@@ -296,10 +296,10 @@ namespace Format {
     }
 
     string toString2(formatType prototype, string const &format) {
-        throw std::invalid_argument("too many arguments");
+        throw std::invalid_argument("not enough arguments");
     }
 
     string getPW(formatType prototype, string const &format) {
-        throw std::invalid_argument("too many arguments");
+        throw std::invalid_argument("not enough arguments");
     }
 }

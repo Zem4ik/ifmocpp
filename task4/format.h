@@ -322,7 +322,7 @@ namespace Format {
     writeVar(formatType prototype, T variable) {
         string stringNumber;
         if (!is_convertible<T, int>::value){
-            throw std::invalid_argument("Invalid argument");
+            throw std::invalid_argument("Invalid argument sss");
         }
         if (prototype.spec == d || prototype.spec == i) {
             stringNumber = intToString(prototype, variable);
@@ -429,7 +429,7 @@ string format(string const &format, Args ... args) {
         indexofFormatString = 0;
         return answer;
     } catch (exception e) {
-        return format;
+        return e.what();
     }
 }
 

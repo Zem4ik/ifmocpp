@@ -422,7 +422,9 @@ using namespace Format;
 
 template<typename ... Args>
 string format(string const &format, Args ... args) {
-    string answer = toString(format, args...);
+    string answer = format;//toString(format, args...);
+    printf("%s", answer);
+    std::invalid_argument("Invalid argument");
     indexofFormatString = 0;
     return answer;
 }

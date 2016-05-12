@@ -342,7 +342,7 @@ namespace Format {
             stringNumber += variable;
             return levelingOfString(prototype, stringNumber);
         }
-        throw std::invalid_argument("Invalid argument222");
+        throw std::invalid_argument("Invalid argument");
     }
 
     string toString(string const &format);
@@ -422,13 +422,9 @@ using namespace Format;
 
 template<typename ... Args>
 string format(string const &format, Args ... args) {
-    try {
-        string answer = toString(format, args...);
-        indexofFormatString = 0;
-        return answer;
-    } catch (exception e) {
-        cout << e.what();
-    }
+    string answer = toString(format, args...);
+    indexofFormatString = 0;
+    return answer;
 }
 
 

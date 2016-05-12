@@ -322,6 +322,9 @@ namespace Format {
     typename std::enable_if<!(std::is_convertible<T, string>::value) && !(std::is_pointer<T>::value), string>::type
     writeVar(formatType prototype, T variable) {
         string stringNumber;
+        if (!is_convertible<T, int>::value){
+            std::invalid_argument("Invalid argument");
+        }
         if (prototype.spec == d || prototype.spec == i) {
             stringNumber = intToString(prototype, variable);
             return levelingOfString(prototype, stringNumber);

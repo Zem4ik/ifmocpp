@@ -321,8 +321,8 @@ namespace Format {
     typename std::enable_if<!(std::is_convertible<T, string>::value) && !(std::is_pointer<T>::value), string>::type
     writeVar(formatType prototype, T variable) {
         string stringNumber;
-        if (!is_convertible<T, int>::value){
-            throw std::invalid_argument("Invalid argument sss");
+        if (!is_convertible<T, int>::value) {
+            throw std::invalid_argument("Invalid argumentddd");
         }
         if (prototype.spec == d || prototype.spec == i) {
             stringNumber = intToString(prototype, variable);
@@ -424,13 +424,9 @@ using namespace Format;
 
 template<typename ... Args>
 string format(string const &format, Args ... args) {
-    try {
-        string answer = toString(format, args...);
-        indexofFormatString = 0;
-        return answer;
-    } catch (exception e) {
-        return e.what();
-    }
+    string answer = toString(format, args...);
+    indexofFormatString = 0;
+    return answer;
 }
 
 

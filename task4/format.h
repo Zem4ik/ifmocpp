@@ -344,7 +344,8 @@ namespace Format {
         }
         std::stringstream buffer;
         buffer << typeid(variable).name() << " - " << prototype.spec << " - " << variable;
-        throw std::invalid_argument("Invalid argument " + buffer.str());
+        //throw std::invalid_argument("Invalid argument " + buffer.str());
+        return "NONE";
     }
 
     string toString(string const &format);

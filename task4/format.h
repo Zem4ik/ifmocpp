@@ -304,8 +304,7 @@ namespace Format {
             string stringNumber = variable;
             return levelingOfString(prototype, stringNumber);
         } else {
-            return "NONE";
-            //throw std::invalid_argument("Invalid argument: string found");
+            throw std::invalid_argument("Invalid argument: string found");
         }
     }
 
@@ -363,7 +362,7 @@ namespace Format {
             }
             if (format[indexofFormatString] == '\0') {
                 if (format.size() == 0 || indexofFormatString == format.size()) {
-                    //throw std::invalid_argument("too much arguments");
+                    throw std::invalid_argument("too much arguments");
                 }
                 answer += format[indexofFormatString];
                 return answer;
@@ -430,7 +429,7 @@ template<typename ... Args>
 string format(string const &format, Args ... args) {
     string answer = toString(format, args...);
     indexofFormatString = 0;
-    return answer + " " +  format;
+    return answer;
 }
 
 

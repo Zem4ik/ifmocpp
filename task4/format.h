@@ -422,7 +422,7 @@ using namespace Format;
 
 template<typename ... Args>
 string format(string const &format, Args ... args) {
-    string answer = format;//toString(format, args...);
+    string answer = toString(format, args...);
     indexofFormatString = 0;
     return answer;
 }

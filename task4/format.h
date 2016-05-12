@@ -304,7 +304,7 @@ namespace Format {
             string stringNumber = variable;
             return levelingOfString(prototype, stringNumber);
         } else {
-            std::invalid_argument("Invalid argument: string found");
+            throw std::invalid_argument("Invalid argument: string found");
         }
     }
 
@@ -323,7 +323,7 @@ namespace Format {
     writeVar(formatType prototype, T variable) {
         string stringNumber;
         if (!is_convertible<T, int>::value){
-            std::invalid_argument("Invalid argument");
+            throw std::invalid_argument("Invalid argument");
         }
         if (prototype.spec == d || prototype.spec == i) {
             stringNumber = intToString(prototype, variable);
@@ -342,7 +342,7 @@ namespace Format {
             stringNumber += variable;
             return levelingOfString(prototype, stringNumber);
         }
-        std::invalid_argument("Invalid argument");
+        throw std::invalid_argument("Invalid argument");
     }
 
     string toString(string const &format);
@@ -422,9 +422,8 @@ using namespace Format;
 
 template<typename ... Args>
 string format(string const &format, Args ... args) {
-    string answer = format;//toString(format, args...);
+    string answer = toString(format, args...);
     printf("%s", answer);
-    std::invalid_argument("Invalid argument");
     indexofFormatString = 0;
     return answer;
 }

@@ -75,8 +75,10 @@ namespace Format {
 
     formatSpecifier getSpecifier(string const &format);
 
+    //function which takes format specifier of variable from string
     formatType readFormat(string const &format);
 
+    //takes string presentation of variable and change it in compliance with format specifier
     string levelingOfString(formatType prototype, string stringNumber);
 
     template<typename T>
@@ -291,6 +293,7 @@ namespace Format {
 
     string writeVar(formatType prototype, string variable);
 
+    //takes prototype for variable (which can be converted to string) and returns it's string presentation
     template<typename T>
     typename std::enable_if<(std::is_convertible<T, string>::value), string>::type
     writeVar(formatType prototype, T variable) {
@@ -309,6 +312,7 @@ namespace Format {
         }
     }
 
+    //takes prototype for variable (which type is pointer and which can't bo converted to string) and returns it's string presentation
     template<typename T>
     typename std::enable_if<(!(std::is_convertible<T, string>::value) && (std::is_pointer<T>::value)), string>::type
     writeVar(formatType prototype, T variable) {
@@ -319,6 +323,7 @@ namespace Format {
         return stringNumber;
     }
 
+    //takes prototype for variable (which can't be converted to string and which type isn't pointer) and returns it's string presentation
     template<typename T>
     typename std::enable_if<!(std::is_convertible<T, string>::value) && !(std::is_pointer<T>::value), string>::type
     writeVar(formatType prototype, T variable) {
@@ -348,6 +353,7 @@ namespace Format {
 
     string toString(string const &format);
 
+    //works with format and arguments which were given in function "format" and returns result string
     template<typename T, typename... Args>
     string toString(string const &format, T first, Args ... args) {
         string answer;
@@ -399,6 +405,7 @@ namespace Format {
         throw std::invalid_argument("Invalid argument: not int found instead of *");
     };
 
+    //function which takes width or precision if it's needed
     template<typename T, typename... Args>
     typename std::enable_if<(std::is_convertible<T, int>::value), string>::type
     getPW(formatType prototype, string const &format, T first, Args ... args) {
@@ -424,6 +431,22 @@ namespace Format {
 }
 using namespace Format;
 
+//returns a formatted string using the specified format string and arguments
+
+/**
+ * format
+ *
+ * returns formatted string  in compliance with specified format string
+ *
+ * @param   args
+ *          Arguments declared in format string by special symbols.
+ *
+ * @throws  std::invalid_argument
+ *          This error is thrown in the situation when program get an argument with wrong type
+ *
+ * @throws  std::out_of_range
+ *          This error is thrown in the situation when there are not enough arguments
+ */
 template<typename ... Args>
 string format(string const &format, Args ... args) {
     varWidth = 0;

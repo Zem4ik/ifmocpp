@@ -15,7 +15,7 @@
 using namespace std;
 
 template<typename ... Args>
-string format(string const &format, Args ... args);
+string format(string const &format, Args&... args);
 
 namespace Format {
     extern int indexofFormatString;
@@ -359,14 +359,18 @@ namespace Format {
 
     template<typename T>
     typename std::enable_if<(std::is_convertible<T, string>::value), string>::type
-    write_at(T variable) {
+    write_at(T& variable) {
         return variable;
     };
 
-    template<typename T, int n>
+    template <typename T, int n>
+    int sizeOfArray(T(&)[n]) { return n; }
+
+    template<typename T>
     typename std::enable_if<(std::is_array<T>::value), string>::type
-    write_at(T (&array)[n]) {
+    write_at(T& array) {
         string result;
+        int n = sizeOfArray(array);
         result = "[";
         for (int i = 0; i < n - 1; i++) {
             result += to_string(array[i]) + ",";
@@ -377,7 +381,7 @@ namespace Format {
 
     template<typename T>
     typename std::enable_if<(!std::is_convertible<T, string>::value && !std::is_array<T>::value && std::is_pointer<T>::value), string>::type
-    write_at(T variable) {
+    write_at(T& variable) {
         string result;
         string type = typeid(*variable).name();
         if (type == "i") {
@@ -395,14 +399,14 @@ namespace Format {
     };
 
     template<typename T>
-    typename std::enable_if<!std::is_integral<T>::value && !std::is_convertible<T, std::string>::value && !std::is_pointer<T>::value, std::string>::type
-    write_at(T variable){
+    typename std::enable_if<!std::is_integral<T>::value && !std::is_convertible<T, std::string>::value && !std::is_pointer<T>::value && !std::is_array<T>::value, std::string>::type
+    write_at(T& variable){
         throw std::invalid_argument("Invalid argument for %@");
     }
 
     template<typename T>
     typename std::enable_if<(std::is_integral<T>::value), std::string>::type
-    write_at(T variable){
+    write_at(T& variable){
         return to_string(variable);
     }
 
@@ -410,7 +414,7 @@ namespace Format {
 
     //works with format and arguments which were given in function "format" and returns result string
     template<typename T, typename... Args>
-    string toString(string const &format, T first, Args ... args) {
+    string toString(string const &format, T& first, Args&... args) {
         string answer;
         while (true) {
             if (format[indexofFormatString] == '%' && format[indexofFormatString + 1] == '%') {
@@ -508,7 +512,7 @@ using namespace Format;
  *          This error is thrown in the situation when there are not enough arguments
  */
 template<typename ... Args>
-string format(string const &format, Args ... args) {
+string format(string const &format, Args&... args) {
     varWidth = 0;
     varPrecision = 0;
     indexofFormatString = 0;

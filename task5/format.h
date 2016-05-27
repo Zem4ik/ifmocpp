@@ -367,7 +367,7 @@ namespace Format {
     int sizeOfArray(T(&)[n]) { return n; }
 
     template<typename T>
-    typename std::enable_if<(std::is_array<T>::value), string>::type
+    typename std::enable_if<(std::is_array<T>::value && !std::is_convertible<T, string>::value), string>::type
     write_at(T& array) {
         string result;
         int n = sizeOfArray(array);

@@ -36,7 +36,8 @@ int main() {
     */
     int aa = 5;
     int *dd = &aa;
-    int **cc = &dd;
-    cout << format("%@", cc);
+    int cc[3] = {1, 2, 3};
+    int d = 5;
+    cout << format("%@", 5);
 }
 

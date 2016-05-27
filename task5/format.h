@@ -512,7 +512,7 @@ using namespace Format;
  *          This error is thrown in the situation when there are not enough arguments
  */
 template<typename ... Args>
-string format(string const &format, Args&... args) {
+string format(string const &format, const Args&... args) {
     varWidth = 0;
     varPrecision = 0;
     indexofFormatString = 0;

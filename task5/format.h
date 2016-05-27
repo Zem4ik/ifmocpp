@@ -15,7 +15,7 @@
 using namespace std;
 
 template<typename ... Args>
-string format(string const &format, Args&... args);
+string format(string const &format, const Args&... args);
 
 namespace Format {
     extern int indexofFormatString;

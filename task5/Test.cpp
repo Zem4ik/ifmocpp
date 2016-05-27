@@ -38,6 +38,6 @@ int main() {
     int *dd = &aa;
     int cc[3] = {1, 2, 3};
     int d = 5;
-    cout << format("%@", 5);
+    cout << format("%");
 }
 
